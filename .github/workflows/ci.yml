@@ -11,15 +11,15 @@ env:
   next: 3.13
 
 on:
-  push:
-    # push inputs aren't known to GitHub
-    inputs:
-      cpython-versions:
-        type: string
-        default: all
-      test-set:
-        type: string
-        default: core
+  # push:
+  #   # push inputs aren't known to GitHub
+  #   inputs:
+  #     cpython-versions:
+  #       type: string
+  #       default: all
+  #     test-set:
+  #       type: string
+  #       default: core
   pull_request:
     # pull_request inputs aren't known to GitHub
     inputs:
