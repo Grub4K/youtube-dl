@@ -1,3 +1,371 @@
+version 2024.07.23
+
+Core
+* Implement release workflow
+* [jsinterp] Support functionality for player `b22ef6e7`
+* [jsinterp] Further improve expression parsing (fix fd8242e) Passes tests from yt-dlp
+* [jsinterp] Re-align JSInterp and tests (esp.) with yt-dlp Thx: various yt-dlp authors
+* [core] Address gaps in allowed extensions
+* [core] Fix PR #32830 for fixed extensionless output template
+* [core,utils] Support unpublicised `--no-check-extensions`
+* [core,utils] Implement unsafe file extension mitigation
+* [utils] Back-port Namespace and MEDIA_EXTENSIONS from yt-dlp Thx pukkandan
+* [jsinterp] Various tweaks
+* [jsinterp] Fix and improve expression parsing
+* [jsinterp] Add Debugger from yt-dlp
+* [utils] Save `orig_msg` in `ExtractorError`
+* [test] Improve download test
+* [core] Re-factor with `_fill_common_fields()` as used in yt-dlp
+* [core] Safer handling of nested playlist data
+* [InfoExtractor] Misc yt-dlp back-ports, etc
+* [compat] Avoid type comparison in `compat_ord` NB This isn't actually a compat fn; it should be utils.int_from_int_or_char
+* [utils] Split out traversal.py dummy and traversal tests
+* [compat] Improve compat_etree_iterfind for Py2.6 Adapted from https://raw.githubusercontent.com/python/cpython/2.7/Lib/xml/etree/ElementPath.py
+* [utils] Update traverse_obj() from yt-dlp
+* [workflows/ci.yml] Temporary workaround for Python 3.5 _pip_ failures
+* [test/test_download] Support 'playlist_maxcount:count' expected value
+* [postprocessor/ffmpeg] Fix finding ffprobe (bug in 21792b8) Fixes https://github.com/ytdl-org/youtube-dl/commit/21792b88b791b16e3ab0a0fb2e26e5bb8a4e2ff3#commitcomment-140705274, thx: vonProteus
+* [utils] Fix crash in _report_ignoring_subs from c58b655  (#32762)
+* [external/FFmpeg] Fix and improve --ffmpeg-location handling
+* [downloader/external] Fix "Resource Warning" in downloader test
+* [compat] Simplify/fix compat_html_parser_HTMLParseError
+* [utils] Apply compat_contextlib_suppress
+* [compat] Add compat_contextlib_suppress
+* [InfoExtractor] Rework and improve JWPlayer extraction
+* [InfoExtractor] Add `_search_json()`
+* [utils] Let int_or_none() accept a base, like int()
+* [utils] Handle user:pass in URLs (#28801)
+* [caffeine.tv] Add new extractor (#32514)
+* [downloader/external] Fix WgetFD proxy (rev 2)
+* [InfoExtractor] Correctly resolve BaseURL in DASH manifest Specs:
+* [InfoExtractor] Support byte range for DASH
+* [downloader/dash] Support `range` in fragment (format f'{start}-{end}') 
+* [InfoExtractor] Support DASH subtitle extraction (yt-dlp back-port)
+* [InfoExtractor] Support some warning and `._downloader` shortcut methods from yt-dlp
+* [compat] Rework compat for `method` parameter of `compat_urllib_request.Request` constructor
+* [core] Fix format string injection for metadata JSON filename message.
+* [Epidemic Sound] Add new extractor (#32628)
+* [utils] Make restricted filenames ignore characters in Unicode categories Mark, Other
+* [workflows/ci.yml] Use setup-python for now released Python 3.12
+* [workflows/ci.yml] Actually use default values for push and pull_request
+* [workflows/ci.yml] Run apt-get update before installing
+* [downloader] Fix baa6c5e: show ETA of http download as ETA instead of total d/l time
+* [utils] Revert bbd3e7e, updating docstring, test instead
+* [utils] Properly handle list values in update_url()
+* [test] Remove redundancy from lambda expected value regex
+* [ci.yml] Improve conditions for nosetest installations
+* [utils] Advertise optional supported `Content-Encoding`s
+* [utils] Add and use `filter_dict()` from yt-dlp
+* [utils] Revise `isinstance()` tests (especially for str/unicode/bytes) to complete Linter fix
+* [utils] Avoid comparing `type(var)`, etc, to pass new Linter rules
+* [utils] Rework URL path munging for ., .. components
+* [utils] Rework decoding of `Content-Encoding`s
+* [workflows/ci.yml] Update to setup-java@v3
+* [build] Fix typo in `devscripts/fish-completion.py` (fix 2285605)
+* [build] Extend use of `devscripts/utils`
+* [compat] Use `compat_open()`
+* [build] Add and use `devscripts/utils`
+* [utils] Fix update_Request() with empty data (not None)
+* [test/test_execution.py] Use `compat_subprocess_get_DEVNULL()`
+* [build] Fix various Jython CI and test issues
+* [workflows/ci.yml] Build 3.12 with pyenv
+* [doc] Update developer guidance
+* [workflows/ci.yml] Extend Python versions
+* [utils] Remove stray undocumented Host header in redirect (fix 46fde7c)
+* [InfoExtractor] Add `_match_valid_url()` class method and refactor
+* [utils] Fix broken Py 3.11+ compat in `traverse_obj()`
+* [InfoExtractor] Add search methods for Next/Nuxt.js from yt-dlp
+* [InfoExtractor] Support groups in _`search_regex()`, etc
+* [utils] Minor updates (merge_dicts, T)
+* [utils] Improve js_to_json, align with yt-dlp
+* [utils] Align traverse_obj() with yt-dlp
+* [compat] Fix old Pythons broken loading of valueless cookie attributes
+* [test] Fixes for old Pythons
+* [doc] Warn against setting cookies with --add-header
+* [downloader/external] Fix cookie support
+* [core] Process header cookies on loading
+* [utils] `YoutubeDLCookieJar`: Add `get_cookie_header` and `get_cookies_for_url` methods
+* [core] Remove `Cookie` header on redirect to prevent leaks
+* [core] Update redirect handling from yt-dlp
+* [compat] Add Request and HTTPClient compat for redirect
+* [test] Make skipped tests in test_execution work with Py 2.6
+* [core] Align error reporting methods with yt-dlp
+* [utils] Add {expected_type} and Iterable support to traverse_obj()
+* [core] Revert version display from b8a86dc
+* [Misc] Fixes for 2.6 compatibility
+* [workflows/ci.yml] Fix test support for Py 2.6
+* [workflows/ci.yml] Restore test support for Py 3.2
+* [workflows/ci.yml] Restore test support for Py 3.3, 3.4, and add 2.6
+* [workflows/ci.yml] Replace actions/setup-python for legacy Pythons
+* [jsinterp] Don't find unrelated objects
+* [jsinterp] Fix test for failed match in extract_object()
+* [jsinterp] Fix div bug breaking player 8c7583ff
+* [core] Revise 1f7c6f8 to help downstream merger (possibly)
+* [compat] Fix casefold import __all__ syntax in a19855f
+* [core] Further improve platform debug log
+* [jsinterp] Small updates for a85a875
+* [core] Improve platform debug log, based on yt-dlp
+* [jsinterp] Add short-cut evaluation for common expression
+* [jsinterp] Handle NaN in bitwise operators
+* [utils] Fix `compiled_regex_type` in 249f2b6
+* [jsinterp] Minimally handle arithmetic operator precedence
+* [DashSegmentsFD] Correctly detect errors when `fragment_retries` == 0
+* [core] Sanitize info dict before dumping JSON (fixes fe7e130)  (#32032)
+* [core] Add and use sanitize_info() method from yt-dlp
+* [core] No longer importing copy
+* [core] Avoid deepcopy of ctx dict (fix f35b757) (Pt 2)
+* [core] Avoid deepcopy of ctx dict (fix f35b757)
+* [options] Add --mtime option, unsets default --no-mtime
+* [devscripts] Improve hack to convert command-line options to API options
+* [compat] Add and use `compat_open()` like Py3 `open()`
+* [FragmentFD] Fix iteration with infinite limit
+* [test] Update tests for Ubuntu 20.04
+* [utils] Ensure `allow_types` for `variadic()` is a tuple
+* [downloader/http] Only check for resumability when actually resuming
+* [AENetworksBaseIE] Report missing show data instead of crash
+* [devscripts] Add a hack to convert command-line options to API options
+* [core] Handle `/../` sequences in HTTP URLs
+* [FragmentFD] Respect `--no-continue`
+* [downloader] Let _ffmpeg_ handle DASH segments
+* [doc] Improve "guidance" on bug reporting
+* [doc] Recommend "Get cookies.txt LOCALLY" extension in README.md (#31763)
+* [jsinterp] Fix regexp parsing and .replace[All] method
+* [jsinterp] Handle `Date` at epoch 0
+* [test] Support test-case with volatile ID (eg live show)
+* Escape URLs in `sanitized_Request`, not `sanitize_url` d2558234cf5dd12d6896eed5427b7dcdb3ab7b5a added escaping of URLs while sanitizing. However, `sanitize_url` may not always receive an actual URL. Eg: When using `youtube-dl "search query" --default-search ytsearch`, `search query` gets escaped to `search%20query` before being prefixed with `ytsearch:` which is not the intended behavior. So the escaping is moved to `sanitized_Request` instead.
+* [jsinterp] Fix dict comprehension for Py2.6
+* [test] Avoid name TestIE which causes a pytest warning
+* [InfoExtractor] Handle unquoted values in OpenGraph searches
+* [FileMoonIE] Add extractor for filemoon.sx (#31515)
+* [feat]: Add support to external downloader aria2p (#31500)
+* [compat] Update test_compat
+* [utils] Add parse_qs, update_url
+* [compat] Systematise compat_ naming
+* [test] Fix TestAgeRestriction
+* [jsinterp] Nits
+* [doc] Fixed typo appearing to promise an example (#31489)
+* [jsinterp] Improve parsing
+* Support `if` statements
+* Added ThisVid.com support (#29187)
+* [PeekVids, PlayVids] Add new extractor (#29765)
+* [utils] Backport traverse_obj (etc) from yt-dlp (#31156)
+* [compat] Work around in case folding for narrow Python build
+* [compat] Add test for compat_casefold()
+* [compat] Add test for compat_casefold()
+* [compat] Reformat casefold.py for easier updating
+* [compat] Unify unicode/str compat and move up
+* [compat] Add compat_casefold and compat_re_Match, for traverse_obj() port
+* [compat] Add Python 2 Unicode casefold using a trivial wrapper around icu/CaseFolding.txt
+* [netease] Support urls shared from mobile app (#31304)
+* [netease] Impove error handling (#31303)
+* Fix ADN extractor (#31275)
+* [netease] Get netease music download url through player api (#31235)
+* [utils] Sanitize look-alike Unicode glyphs in non-ID filename fields when --restrict-filenames
+* [JSInterp] Improve separation logic
+* [test] Implement string "lambda x: condition(x)" as an expected value
+* [test] Use windows-2019 for tests (At least for now) resolves #31249
+* [jsinterp] Workaround operator associativity issue
+* [cache] Add cache validation by program version, based on yt-dlp
+* [jsinterp] Handle new YT players 113ca41c, c57c113c
+* [options] Document that postprocessing is not forced by --postprocessor-args
+* [compat] Replace deficient ChainMap class in Py3.3 and earlier
+* [compat] Replace deficient ChainMap class in Py3.3 and earlier
+* [jsinterp] Improve try/catch/finally support
+* [jsinterp] Fix bug in operator precedence
+* [core] Avoid processing empty format list after removing bad formats
+* [utils] Ensure RFC3986 encoding result is unicode
+* [jsinterp] Clean up and pull yt-dlp style
+* [jsinterp] Handle regexp literals and throw/catch execution (#31182)
+* [jsinterp] Improve JS language support (#31175)
+* [postprocessor] Don't replace existing value with null metadata parsed from title
+* [jsinterp] Overhaul JSInterp to handle new YT players 4c3f79c5, 324f67b9 (#31170)
+* [core] Make `--max-downloads ...` stop immediately on reaching the limit
+* [test, etc] Improve download test logs; also clean up some new flake8 issues (#31153)
+* [options] Improve be35e53 (--match-/reject-title parameter value)
+* [test] Fix linter for 3aa94d7945dfaa0e04acf2700ffe0e43b00db498
+* [utils, etc] Kill child processes when yt-dl is killed
+* [test] Fix workable subtitle tests (except YT) and mark others as skip, broken
+* [test] Skip not _WORKING IE in subtitle tests; use unittest.skipTest throughout
+* [utils] Escape URL while sanitizing Closes #31008, #yt-dlp/263
+* [Readme] Clarified extractor naming (#29799)
+* [utils] Enable ALPN in HTTPS to satisfy broken servers
+* Update options.py
+* [wat.tv] Add version `pver` to metadata API call
+* [doc] Clarify test naming
+* Disable blank issues
+* Ignore --external-downloader-args if --external-downloader was rejected
+* Make default upload_/release_date a compat_str
+* Avoid skipping ID when unlisted_hash is numeric
+* Fixed groups() call on potentially empty regex search object (#30676)
+* add missing __future__ import unicode_literals
+* resolve problem with unpacking operator for <py3.5
+* do not use f-strings
+* avoid traverse_obj function
+* revert: use _match_valid_url function
+* Remove redundant assigning `format_id`
+* Add ArteTVCategoryIE to support category playlists
+* Updated Album URL regex
+* Support __INITIAL_DATA__ with stringified JSON
+* Try for timestamp, description from window.__INITIAL_DATA__ pages
+* [test:download] Only extract enough videos for playlist_mincount
+* Fix tests for working IEs; disable obsolete WDRMobile
+* Fix WDRMaus; extend URL matching for other Maus pages; improve ID extraction
+* Update URPlayIE extractor for Next.js page format, with subtitles
+* Support more deeply nested ptmd_path with test, update tests
+* Additional tweaks: allow any .ndr.de, simplify quote match
+* Fix NDR, NJoy tests
+* NJoy: improve extraction of NDR id, description, etc with current page formats
+* Support Tele5 pages with Discovery Networks format instead of JWPlatform
+* Back-port yt-dlp Viki extractor
+* Return the item itself if playlist has one entry
+* Find TV2DK Kaltura ID in Nuxt.js page format
+* Rework 2c2c2bd with an actual Mix page and realistic playlist size
+* Avoid crashing if n-sig decode fails
+* Support Youtube Shorts URL format
+* Implement n-param descrambling using JSInterp
+* Refactor JSInterpreter._separate
+* Back-port test_youtube_signature.py from yt-dlp and fix JSInterp accordingly
+* Fix splice to handle float
+* Handle default in switch better
+* Back-port JS interpreter upgrade from yt-dlp PR #1437
+* Add compat_map/filter and use the former
+* Fix test_youtube_flat_playlist_extraction
+* Remove obsolete non-working test_youtube_toptracks
+* Fix test_youtube_mix
+* Remove obsolete test_youtube_course
+* Fix test_youtube_playlist_noplaylist
+* Fix max_results
+* Use `itertools.islice`
+* Add back `YoutubeSearchURLIE`
+
+Extractor
+* [YouTube] Fix nsig processing for player `b22ef6e7`
+* [YandexMusic] Save track version in the title field
+* [YandexMusic] Download music in High Quality (320 Kbit/s)
+* [PalcoMP3] Conform to new linter rule
+* [VidLii] Add 720p support (#30924)
+* [ORF] Skip tests with limited availability
+* [ORF] Re-factor and update`ORFFM4StoryIE`
+* [ORF] Support sound.orf.at, updating `ORFRadioIE`
+* [ORF] Support on.orf.at, replacing `ORFTVthekIE`
+* [mixcloud] updated mixcloud API server address (#32557)
+* [YouPorn] Add playlist extractors
+* [YouPorn] Improve extraction
+* [YouPorn] Incorporate yt-dlp PR 8827
+* [Youtube] Fix unwanted private method __ie_msg in f8b0135850
+* [Vimeo] Improve `config` extraction (#32742)
+* [Videa] Fix extraction
+* [Videa] Align with yt-dlp
+* [XFileShare] Update extractor for 2024
+* [GBNews]Add new extractor for GB News TV channel (#29432)
+* [Vbox7] Improve extraction, adding features from yt-dlp PR #9100
+* [Vbox7IE] Sanitise ld+json containing unexpected characters
+* [Vbox7IE] Improve extraction
+* [YouTube] Fix `like_count` extraction using `likeButtonViewModel`
+* [YouTube] Rework n-sig processing, realigning with yt-dlp
+* [Imgur] Overhaul extractor module (#32612)
+* [telewebion] Fix extraction (#32634)
+* [Youtube] Update consent cookie handling to match site
+* [S4C] Add thumbnail extraction, extract series as playlist
+* [S4C] Add extractor for Sianel Pedwar Cymru
+* [Clipchamp] Add new extractor back-ported from yt-dlp
+* [DLF] Add site extractors back-ported from yt-dlp
+* [Whyp] Add extractor back-ported from yt-dlp
+* [GlobalPlayer] Add site extractors back-ported from yt-dlp
+* [YouTube] Avoid crash in author extraction
+* [YouTube] Improve nsig function name extraction
+* [YouTube] Improve fix for ae8ba2c Thx: https://github.com/yt-dlp/yt-dlp/commit/01aba25
+* [YouTube] Fix `KeyError QV` in signature extraction failed
+* [ITV] Fix UA capitalisation in 384f632
+* [YouTube] Support Releases tab
+* [YouTube] Simplify signature patterns
+* [extractor/youtube] Bypass throttling for `-f17`
+* [extractor/youtube] Construct fragment list lazily
+* [Youtube] Construct dash formats with `range` query
+* [YouTube] Support @owner format in uploader_id etc
+* [Vimeo] Fix e19ec52 for tween-age Pythons
+* [YouTube] Avoid crash if uploader_id extraction fails
+* [StreamsbIE] Add extractor for streamsb.com (viewsb.com) (#31517)
+* [KommunetvIE] Add extractor for kommunetv.no (#31516)
+* [rbgtum] Add new extractor (#31305)
+* [YouTube] Fix tests
+* [YouTube] Refresh compat/utils usage
+* [YouTube] Add `signatureTimestamp` for age-gate bypass
+* [YouTube] Bypass age-gating for certain restricted videos
+* [Vimeo] Support /user{video_id}/{slug} URL format
+* [Vimeo] Fix `Unable to extract info section` redux
+* [IGN] Overhaul extractor to avoid URL redirection loop
+* [ITV] Overhaul ITV extractor (#30266)
+* [myvideoge] Add new extractor (#31360)
+* [xhamster] add support for new domain xhvid.com (#31370)
+* [FIFA] Back-port extractor from yt-dlp (#31385)
+* [Blerp] Add new extractor (#31398)
+* [YouTube] Fix not finding videos listed under a channel's "shorts" subpage.  (#31409)
+* [Callin] Add new extractor (#31414)
+* [pr0gramm] implement InfoExtractor, Resolves #31433 (#31434)
+* [cammodels] fix and improve extractor (#31453)
+* [americastestkitchen] Add support for downloading entire series (#31493)
+* [generic] Improve KVS (etc) extraction
+* [generic] Improve KVS (etc) extraction
+* [generic] Add KVS player extraction
+* [common:jwplayer] Improve jwplayer extraction and parsing (#31000)
+* [extractor/ceskatelevize] Back-port extractor from yt-dlp, etc (#30713)
+* [Vimeo] Update variable name in hydration JSON pattern
+* [BongaCams] Support new .net domain
+* [ManyVids] Support new single-page app structure
+* [ManyVids] Support new single-page app structure
+* [Motherless] Pull from yt-dlp, etc
+* [Common:JWPlayer] Fix x1000 scaling error
+* [ZDF] Overhaul ZDF extractors
+* [motherless] Fixed the broken uploader_id in the extractor (#31243)
+* [manyvids] Improve extraction (#31172)
+* [NRK] Remove explicit Accept-Encoding header that invites Brotli
+* [Telegraaf] Use mobile GraphQL API endpoint
+* [YouTube] Improve error check for n-sig processing
+* [infoq] Avoid crash if the page has no `mp3Form`
+* [uktvplay] Support domain without .uktv
+* [aenetworks] Update _THEPLATFORM_KEY and _THEPLATFORM_SECRET (#29749)
+* [VVVVID] Support video/dash types (#31060)
+* [Mediaset] Support player version number in URL pattern
+* [NHK] Use new API URL
+* [XHamster] Support xhday.com alias, extract `uploader_id`
+* [YouTube] Support JSON3 subtitle format
+* [HRFernsehen] Back-port new extractor from yt-dlp Closes #26445, where this was originally proposed.
+* [YouPorn] Improve `upload_date` extraction
+* [YouTube] Handle player c5a4daa1 with indirect n-function definition
+* [NHK] Support alphabetic characters in 7-char NhkVod IDs (#29682)
+* [streamcz] Remove empty `'{}'.format()` for Py2.6
+* [KTH] Add new extractor for KTH play (#30885)
+* [Youtube] Fix "n" descrambling for player fae06c11
+* [RAI] Fix extraction of http formats
+* [RAI] Extend formats with direct http mp4 link (PR #27990)
+* [RAI] Added checks for DRM protected content (PR #27657)
+* [extractor/bilibili] Fix path "/audio/auxxxxx" download return 403
+* [Alsace20TV] Add new extractors Alsace20TVIE, Alsace20TVEmbedIE
+* [CPAC] Add extractor for Canadian Parliament
+* [aliexpress] Fix test case
+* [bigo] add support for bigo.tv (#30635)
+* [rutv] fix vbr for empty string value (#30623)
+* [streamcz] test fixes and one additional test
+* [streamcz] cherry-pick from yt-dlp
+* [extractor/videa] Back-port from yt-dlp PRs 463+1028
+* [extractor/videa] fix extraction in Py2
+* [BBC] Also allow PID with leading 'l' (live?)
+* [Nuvid] Use site JSON for video details (#29332)
+* [ARD] Back-port subtitle extraction from yt-dlp PR 2409
+* [extractor/audiomack] Updated URL regex, corrected invalid testcases, fixed bug
+* [niconico] Implement heartbeat for download
+* [niconico] Back-port extractor from yt-dlp
+* [applepodcasts] Extract default thumbnail image
+* [applepodcasts] Improve format extraction
+* [applepodcasts] Support new AMP-ish page structure
+* xvideos: Fix for #30271
+* NDR: improve extraction of NDR id, description, etc with current page formats
+* [youtube:search] Add tests
+* [youtube] Support channel search
+* [YouTube] Fix n-sig for player e06dea74 (#30582)
+
+
 version 2021.12.17
 
 Core
