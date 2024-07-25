@@ -1,3 +1,9 @@
+version 2024.07.25
+
+Core
+* Provide additional target youtube-dl-py3
+
+
 version 2024.07.23.1
 
 Extractor
